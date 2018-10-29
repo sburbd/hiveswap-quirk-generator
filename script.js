@@ -59,6 +59,7 @@ var app = new Vue({
     },
 
     vikare: function() {
+      if (this.message == '') {return ''}
       return '~ ' +
       this.message.charAt(0).toUpperCase() +
       this.message.slice(1)
@@ -68,6 +69,7 @@ var app = new Vue({
     },
 
     azdaja: function() {
+      if (this.message == '') {return ''}
       return '||| ' +
       this.message.charAt(0).toUpperCase() +
       this.message.slice(1)
