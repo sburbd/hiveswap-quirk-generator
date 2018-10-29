@@ -1,3 +1,9 @@
+/* TEMP */
+
+.midbloods .highbloods{
+  display: none;
+}
+
 body{
   font-size: 0.8em;
 }
@@ -10,16 +16,23 @@ p{
 }
 
 .container{
-  width: 100%;
+  min-width: 100%;
   padding: 0px;
+  margin: 0px;
+}
+
+.row{
+  width: 100%;
+  margin: auto;
 }
 
 .main{
-  margin: 0px 50px;
+  margin: 0px 20px;
 }
 
 .name{
-  width: 20%;
+  width: 10%;
+  margin-right: 30px;
 }
 
 .textarea{
@@ -27,5 +40,42 @@ p{
 }
 
 textarea{
-  width: 60%
+  width: 100%;
+  font-family:'Courier New';
+  font-weight: 600;
+}
+
+/* Text output colours */
+.rust{
+  color: #A10000
+}
+.bronze {
+  color: #A15000
+}
+.gold{
+  color: #A1A100
+}
+.olive{
+  color: #416600
+}
+.jade{
+  color: #008141
+}
+.teal{
+  color: #008282
+}
+.cerulean{
+  color: #005682
+}
+.indigo{
+  color: #000056
+}
+.purple{
+  color: #2B0057
+}
+.violet{
+  color: #6A006A
+}
+.fuschia{
+  color: #77003C
 }

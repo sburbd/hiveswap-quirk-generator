@@ -4,15 +4,10 @@ var app = new Vue({
     message: '',
   },
   methods: {
-    emptycheck: function() {
-      if (this.message == '') {return ''}
-    }
   },
   computed: {
 
     xefros: function () {
-      if (this.message == '') {return ''}
-
       return this.message
         .toLowerCase()
         .replace(/ex/gi, "X")
@@ -24,7 +19,12 @@ var app = new Vue({
 
     diemen: function () {
       if (this.message == '') {return ''}
-      return '(| ' + this.message.replace(/\.+$/, "") + ' |)'
+
+      return '(| '
+      + this.message
+      .replace(/\.+$/, "")
+      .toLowerCase()
+      + ' |)'
     },
 
     fozzer: function() {
@@ -33,8 +33,16 @@ var app = new Vue({
 
     marsti: function () {
       if (this.message == '') {return ''}
-      return this.message.charAt(0).toUpperCase()
-      + this.message.slice(1) + ' -_-'
+
+      return this.message.charAt(0)
+      .toUpperCase()
+      + this.message
+      .slice(1)
+      .toLowerCase()
+      .replace(/\bi\b/gi, "I")
+      .replace(/\bi'\b/gi, "I'")
+
+      + ' -_-'
     },
 
     chixie: function() {
@@ -42,39 +50,60 @@ var app = new Vue({
     },
 
     skylla: function() {
-      if (this.message == '') {return ''}
       var msg = this.message
         .replace(/y/gi, "yy")
       return msg.charAt(0).toUpperCase()
       + msg.slice(1)
+      .replace(/\bi\b/gi, "I")
+      .replace(/\bi'\b/gi, "I'")
     },
 
     vikare: function() {
-
+      return '~ ' +
+      this.message.charAt(0).toUpperCase() +
+      this.message.slice(1)
+      .replace(/\bi\b/gi, "I")
+      .replace(/\bi'\b/gi, "I'")
+      + ' ~'
     },
 
     azdaja: function() {
-
+      return '||| ' +
+      this.message.charAt(0).toUpperCase() +
+      this.message.slice(1)
+      .replace(/\bi\b/gi, "I")
+      .replace(/\bi'\b/gi, "I'")
+      + ' |||'
     },
 
     cirava: function () {
       if (this.message == '') {return ''}
       return this.message
       .toLowerCase()
-      .replace(/[^A-Za-z0-9" "]/g,"")
+      .replace(/[^A-Za-z0-9" "]/g, '')
        + ' lmao'
     },
 
     folykl: function() {
-
+      // randomised no. of spaces
+      return this.message.toLowerCase()
+      .replace(/[^A-Za-z0-9\s]/g, '')
+      .replace(/\s+/g, function() {
+        var sp = ' '.repeat((Math.floor(Math.random() * 4) + 3))
+        return sp
+      })
     },
 
     kuprum: function() {
-
+      if (this.message == '') {return ''}
+      return '> ' + this.message.toLowerCase()
+      .replace(/\blol\b/g, "LOL")
     },
 
     zebede: function() {
-
+      return this.message.toLowerCase()
+      .replace(/[^A-Za-z0-9\s]/g, '')
+      .replace(/s\b/g, 'z')
     },
 
     boldir: function() {
@@ -82,24 +111,42 @@ var app = new Vue({
     },
 
     charun: function() {
-
+      if (this.message == '') {return ''}
+      return this.message.charAt(0).toUpperCase()
+      + this.message.slice(1).toLowerCase()
+      + '..'
     },
 
     konyyl: function() {
-
+      return this.message
     },
 
     polypa: function() {
-
+      if (this.message == '') {return ''}
+      return '* ' + this.message
+        .toLowerCase()
+        .replace(/\band\b/g, '* and')
+        .replace(/\bbecause\b/g, '* because')
+        .replace(/\bso\b/g, '* so')
+      + ' *|'
     },
 
     wanshi: function() {
+      if (this.message == '') {return ''}
+
+      return '[] ' +
+      this.message.charAt(0).toUpperCase() +
+      this.message.slice(1)
+      .toLowerCase()
+      .replace(/w/gi, 'W')
+      .replace(/[^A-Za-z0-9\s]/g, '') +
+      ((Math.random() <= 0.5) ? ' oWo' : ' uWu') +
+      ' []'
 
     },
 
     bronya: function() {
       if (this.message == '') {return ''}
-
       return 'vV ' + this.message.charAt(0).toUpperCase()
       + this.message.slice(1) + ' Vv'
     },
@@ -122,15 +169,23 @@ var app = new Vue({
 
     tagora: function() {
       if (this.message == '') {return ''}
-      return this.message
-      .charAt(0).toUpperCase()
+      return this.message.charAt(0).toUpperCase()
+
       + this.message.slice(1)
-      + '\n'
-      + '*_________'
+      .toLowerCase()
+      .replace(/\bi\b/gi, "I")
+      .replace(/\bi'\b/gi, "I'")
+
+      + '\n' + '*_________'
     },
 
     tegiri: function() {
-
+      var msg = this.message
+        .replace(/l/gi, "/")
+      return msg.charAt(0).toUpperCase()
+      + msg.slice(1)
+      .replace(/\bi\b/gi, "I")
+      .replace(/\bi'\b/gi, "I'")
     },
 
     tirona: function() {
@@ -138,43 +193,56 @@ var app = new Vue({
     },
 
     tyzias: function() {
-
+      return this.message
+      .toLowerCase()
+      .replace(/[^A-Za-z0-9\s\,]/g, '')
+      .replace(/m/g, "mmmm")
+      .replace(/w/g, "wwww")
     },
 
     ardata: function () {
       if (this.message == '') {return ''}
-        var msg = this.message
-        return msg.charAt(0).toUpperCase()
+        return this.message
+        .toLowerCase()
         .replace(/i/g, "iii")
-        .replace(/I/g, "III")
-        + msg.slice(1)
-        .replace(/i/g, "iii")
-        .replace(/I/g, "III")
+        .replace(/(:\))/g, ":.)")
+        .replace(/(:\()/g, ":.(")
+        .replace(/(;\()/g, ";,(")
+        .replace(/(;\()/g, ";,)")
+
     },
 
     elwurd: function() {
-
+      return this.message.toLowerCase()
+      .replace(/l/gi, "L")
+      .replace(/\.+$/, "")
     },
 
     mallek: function() {
-
+      if (this.message == '') {return ''}
+      return this.message.toLowerCase()
+      .replace(/[^A-Za-z0-9\s\,]/g, '')
+      .replace(/\bi\b/g, 'I')
+      .replace(/\bis\b/g, '=')
+      .replace(/\bare\b/g, '=')
+      .replace(/\bisn\'t\b/, '!=')
+      .replace(/\baren\'t\b/, '!=')
+      .replace(/is\snot/g, '!=')
+      .replace(/am\snot/g, '!=')
+      + ';'
     },
 
     remele: function() {
-
+      return this.message
+      .charAt(0).toUpperCase()
+      .replace(/ain\b/g, 'aine')
+      .replace(/at\b/g, 'ate')
+      .replace(/in\b/g, 'ine')
     },
 
     amisia: function () {
-      if (this.message == '') {return ''}
-
-      var msg = this.message.split('')
-
-      return msg.map((x) => {
-        if (x == 'u') { return x + x }
-        if (x == 'U') { return x + x }
-        else { return x }
-      }).join('')
-
+      return this.message.toLowerCase()
+      .replace(/u/g, "uu")
     },
 
     galekh: function() {
@@ -214,10 +282,13 @@ var app = new Vue({
 
     trizza: function () {
       if (this.message == '') {return ''}
-      return this.message
+      return this.message.charAt(0).toUpperCase() +
+      this.message.slice(1)
         .toLowerCase()
         .replace(/[^A-Za-z0-9" "]/g,"")
         .replace(/w/gi, "ψ")
+        .replace(/\bi\b/gi, "I")
+        .replace(/\bi'\b/gi, "I'")
 
     }
 
