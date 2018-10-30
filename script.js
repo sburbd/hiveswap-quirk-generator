@@ -3,8 +3,6 @@ var app = new Vue({
   data: {
     message: '',
   },
-  methods: {
-  },
   computed: {
 
     xefros: function () {
@@ -33,7 +31,6 @@ var app = new Vue({
 
     marsti: function () {
       if (this.message == '') {return ''}
-
       return this.message.charAt(0)
       .toUpperCase()
       + this.message
@@ -41,7 +38,6 @@ var app = new Vue({
       .toLowerCase()
       .replace(/\bi\b/gi, "I")
       .replace(/\bi'\b/gi, "I'")
-
       + ' -_-'
     },
 
@@ -109,7 +105,9 @@ var app = new Vue({
     },
 
     boldir: function() {
-
+      if (this.message == '') {return ''}
+      return '(' +
+      this.message.toLowerCase() + ')'
     },
 
     charun: function() {
@@ -130,6 +128,7 @@ var app = new Vue({
         .replace(/\band\b/g, '* and')
         .replace(/\bbecause\b/g, '* because')
         .replace(/\bso\b/g, '* so')
+
       + ' *|'
     },
 
@@ -149,8 +148,23 @@ var app = new Vue({
 
     bronya: function() {
       if (this.message == '') {return ''}
-      return 'vV ' + this.message.charAt(0).toUpperCase()
-      + this.message.slice(1) + ' Vv'
+
+      // if bullet point
+      if (RegExp('\n').test(this.message) == true) {
+        var num = 1
+
+        return '1. ' + this.message.charAt(0).toUpperCase()
+        + this.message.slice(1)
+        .replace(/\n/g, function() {
+          num ++;
+          return `\n${num.toString()}. `
+        })
+      }
+
+      else {
+        return 'vV ' + this.message.charAt(0).toUpperCase()
+        + this.message.slice(1) + ' Vv'
+      }
     },
 
     daraya: function() {
@@ -162,11 +176,16 @@ var app = new Vue({
     },
 
     lynera: function() {
-
+      return '-' + this.message.charAt(0) +
+      this.message.slice(1)
+      .replace(/\!/g, '!!!')
+      .toLowerCase()
     },
 
     stelsa: function() {
-
+      return this.message
+      .toUpperCase()
+      .replace(/[^A-Za-z0-9" "]/g,"")
     },
 
     tagora: function() {
@@ -293,7 +312,5 @@ var app = new Vue({
         .replace(/\bi'\b/gi, "I'")
 
     }
-
-
   }
 })
