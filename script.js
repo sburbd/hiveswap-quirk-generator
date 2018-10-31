@@ -42,7 +42,9 @@ var app = new Vue({
     },
 
     chixie: function() {
-
+      return this.message
+      .toLowerCase()
+      .replace(/[\,\.\;]/g,'/')
     },
 
     skylla: function() {
@@ -78,14 +80,14 @@ var app = new Vue({
       if (this.message == '') {return ''}
       return this.message
       .toLowerCase()
-      .replace(/[^A-Za-z0-9" "]/g, '')
+      .replace(/[^A-Za-z0-9" "\n]/g, '')
        + ' lmao'
     },
 
     folykl: function() {
       // randomised no. of spaces
       return this.message.toLowerCase()
-      .replace(/[^A-Za-z0-9\s]/g, '')
+      .replace(/[^A-Za-z0-9\s\n]/g, '')
       .replace(/\s+/g, function() {
         var sp = ' '.repeat((Math.floor(Math.random() * 4) + 3))
         return sp
@@ -100,7 +102,7 @@ var app = new Vue({
 
     zebede: function() {
       return this.message.toLowerCase()
-      .replace(/[^A-Za-z0-9\s]/g, '')
+      .replace(/[^A-Za-z0-9\s\n]/g, '')
       .replace(/s\b/g, 'z')
     },
 
@@ -128,6 +130,8 @@ var app = new Vue({
         .replace(/\band\b/g, '* and')
         .replace(/\bbecause\b/g, '* because')
         .replace(/\bso\b/g, '* so')
+        .replace(/\bbut\b/g, '* so')
+        .replace(/\bhowever\b/g, '* so')
 
       + ' *|'
     },
@@ -140,7 +144,7 @@ var app = new Vue({
       this.message.slice(1)
       .toLowerCase()
       .replace(/w/gi, 'W')
-      .replace(/[^A-Za-z0-9\s]/g, '') +
+      .replace(/[^A-Za-z0-9\s\n]/g, '') +
       ((Math.random() <= 0.5) ? ' oWo' : ' uWu') +
       ' []'
 
@@ -176,6 +180,7 @@ var app = new Vue({
     },
 
     lynera: function() {
+      if (this.message == '') {return ''}
       return '-' + this.message.charAt(0) +
       this.message.slice(1)
       .replace(/\!/g, '!!!')
@@ -185,7 +190,7 @@ var app = new Vue({
     stelsa: function() {
       return this.message
       .toUpperCase()
-      .replace(/[^A-Za-z0-9" "]/g,"")
+      .replace(/[^A-Za-z0-9" "\n]/g,"")
     },
 
     tagora: function() {
@@ -210,13 +215,16 @@ var app = new Vue({
     },
 
     tirona: function() {
-
+      return this.message
+      .toLowerCase()
+      .replace(/e/g, '33')
+      .replace(/\'/g, '')
     },
 
     tyzias: function() {
       return this.message
       .toLowerCase()
-      .replace(/[^A-Za-z0-9\s\,]/g, '')
+      .replace(/[^A-Za-z0-9\s\n\,]/g, '')
       .replace(/m/g, "mmmm")
       .replace(/w/g, "wwww")
     },
@@ -242,7 +250,7 @@ var app = new Vue({
     mallek: function() {
       if (this.message == '') {return ''}
       return this.message.toLowerCase()
-      .replace(/[^A-Za-z0-9\s\,]/g, '')
+      .replace(/[^A-Za-z0-9\s\n]/g, '')
       .replace(/\bi\b/g, 'I')
       .replace(/\bis\b/g, '=')
       .replace(/\bare\b/g, '=')
@@ -255,10 +263,15 @@ var app = new Vue({
 
     remele: function() {
       return this.message
-      .charAt(0).toUpperCase()
+      .charAt(0).toUpperCase() +
+
+      this.message.slice(1)
       .replace(/ain\b/g, 'aine')
       .replace(/at\b/g, 'ate')
       .replace(/in\b/g, 'ine')
+      .replace(/ion\b/g, 'ione')
+      .replace(/ck\b/g, 'cke')
+      .replace(/st\b/g, 'ste')
     },
 
     amisia: function () {
@@ -267,6 +280,23 @@ var app = new Vue({
     },
 
     galekh: function() {
+      if (this.message == '') {return ''}
+
+      if (RegExp('\n').test(this.message) == true) {
+        var num = 0
+
+        return this.message.charAt(0).toUpperCase()
+        + this.message.slice(1)
+        .replace(/\n/g, function() {
+          num ++;
+          return `[${num.toString()}]\n`
+        })
+      }
+
+      else {
+        return this.message.charAt(0).toUpperCase()
+        + this.message.slice(1) + '[1]'
+      }
 
     },
 
@@ -275,6 +305,7 @@ var app = new Vue({
     },
 
     zebruh: function() {
+      if (this.message == '') {return ''}
 
     },
 
@@ -294,7 +325,8 @@ var app = new Vue({
     },
 
     karako: function() {
-
+      return this.message
+      .replace(/\b[a-zA-Z]+\b/ig, 'honk!')
     },
 
     marvus: function() {
@@ -306,11 +338,10 @@ var app = new Vue({
       return this.message.charAt(0).toUpperCase() +
       this.message.slice(1)
         .toLowerCase()
-        .replace(/[^A-Za-z0-9" "]/g,"")
+        .replace(/[^A-Za-z0-9" "\n]/g,"")
         .replace(/w/gi, "ψ")
         .replace(/\bi\b/gi, "I")
         .replace(/\bi'\b/gi, "I'")
-
     }
   }
 })
