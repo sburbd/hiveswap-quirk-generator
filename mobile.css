@@ -1,0 +1,31 @@
+* {
+  border: 1px gray solid;
+}
+
+.app-view{
+  max-width: 100vw;
+  margin: 0;
+  object-fit: contain;
+  margin: auto;
+  text-align: center;
+}
+
+.troll{
+  display: grid;
+  grid-template-columns: 80vw 20vw;
+}
+
+header{
+  height: 50px;
+  margin: auto; /* Important */
+  text-align: center;
+  position: relative;
+}
+
+h4{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+}

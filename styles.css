@@ -1,46 +1,4 @@
-/* TEMP */
-
-.midbloods .highbloods{
-  display: none;
-}
-
-body{
-  font-size: 0.8em;
-}
-
-p{
-  margin-bottom: 30px;
-}
-.hemo{
-  width: 33%
-}
-
-.container{
-  min-width: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-
-.row{
-  width: 100%;
-  margin: auto;
-}
-
-.main{
-  margin: 0px 20px;
-}
-
-.name{
-  width: 10%;
-  margin-right: 30px;
-}
-
-.textarea{
-  width: 80%;
-}
-
 textarea{
-  width: 100%;
   font-family:'Courier New';
   font-weight: 600;
 }
